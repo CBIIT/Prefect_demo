@@ -36,8 +36,8 @@ deployments:
 
     # flow-specific parameters
     parameters:
-      name: "user"
-      celebration: "no"
+      user_name: "user"
+      celebration_mode: "no"
 
     # pull action to overwrite from file pull action
     pull:
