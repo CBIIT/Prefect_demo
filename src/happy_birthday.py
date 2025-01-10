@@ -3,15 +3,15 @@ def birthday_message(name="user", celebration_mode=False):
     Prints a birthday message. 
     
     If no name is provided, defaults to "user" and prints "Happy Birthday to you".
-    If celebration_mode is True, surrounds the message with dancing Kirby emojis.
+    If celebration is True, surrounds the message with dancing Kirby emojis.
     
     Args:
         name (str): The name of the person. Defaults to "user".
-        celebration_mode (bool): Whether to enable celebration mode. Defaults to False.
+        celebration (bool): Whether to enable celebration mode. Defaults to False.
     """
     message = f"Happy Birthday {name}" if name != "user" else "Happy Birthday to you"
     
-    if celebration_mode:
+    if celebration:
         kirby_left = "<(^O^<)"
         kirby_right = "(>^O^)>"
         print(f"{kirby_left} {kirby_left} {message} {kirby_right} {kirby_right}")
