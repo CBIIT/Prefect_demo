@@ -31,7 +31,7 @@ deployments:
     version: null
     tags: ["Production"]
     description: null
-    entrypoint: workflows/happy_birthday_prefect.py:runner
+    entrypoint: workflow/happy_birthday_prefect.py:runner
     schedule: null
 
     # flow-specific parameters
