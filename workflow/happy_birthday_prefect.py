@@ -33,8 +33,8 @@ def runner(user_name: str, celebration_mode: DropDownChoices):
     If celebration_mode is True, surrounds the message with dancing Kirby emojis.
 
     Args:
-        name (str): The name of the person. Defaults to "user".
-        celebration (DropDownChoices): Whether to enable celebration mode. Defaults to False.
+        user_name (str): The name of the person. Defaults to "user".
+        celebration_mode (DropDownChoices): Whether to enable celebration mode. Defaults to False.
     """
 
     birthday_message(name=user_name, celebration=celebration_mode)
