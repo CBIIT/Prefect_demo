@@ -26,7 +26,7 @@ DropDownChoices = Literal["yes", "no"]
     log_prints=True,
     flow_run_name="happy_birthday...",
 )
-def runner(user_name, celebration_mode: DropDownChoices):
+def runner(user_name: str, celebration_mode: DropDownChoices):
     """
     Prints a birthday message.
     If no name is provided, defaults to "user" and prints "Happy Birthday to you".
