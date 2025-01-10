@@ -29,7 +29,7 @@ deployments:
   # base metadata
   - name: happy-birthday
     version: null
-    tags: ["Production"]
+    tags: ["HAPPY BIRTHDAY"]
     description: null
     entrypoint: workflow/happy_birthday_prefect.py:runner
     schedule: null
