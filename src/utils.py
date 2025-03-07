@@ -1,5 +1,5 @@
 import boto3
-from boto3.exceptions import ClientError
+from botocore.exceptions import ClientError
 import os
 from botocore.config import Config
 from prefect import task, flow

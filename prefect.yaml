@@ -55,3 +55,30 @@ deployments:
       name: ccdi-curation-2gb
       work_queue_name: null
       job_variables: {}
+
+  - name: file-copy-s3
+    version: null
+    tags: ["Training"]
+    description: null
+    entrypoint: workflow/copy_file_s3.py:copy_object_s3
+    schedule: null
+
+    # flow-specific parameters
+    parameters:
+
+    # pull action to overwrite from file pull action
+    pull:
+      - prefect.projects.steps.git_clone_project:
+          id: clone-step
+          repository: https://github.com/CBIIT/Prefect_demo.git
+          branch: file_copy_demo
+      - prefect.projects.steps.pip_install_requirements:
+          requirements_file: requirements.txt
+          directory: "{{ clone-step.directory }}"
+          stream_output: False
+
+    # infra-specific fields
+    work_pool:
+      name: fnl-worker
+      work_queue_name: null
+      job_variables: {}
