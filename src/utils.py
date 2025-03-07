@@ -61,13 +61,13 @@ def copy_object_parameter(url_in_cds: str, dest_bucket_path: str) -> dict:
     """Returns a dict that can be used as parameter for copy object using s3 client
 
     Example
-    mydict=copy_object_parameter(url_in_cds="s3://ccdi-validation/QL/file2.txt",
+    copy_parameter=copy_object_parameter(url_in_cds="s3://ccdi-validation/QL/file2.txt",
         dest_bucket_path="my-source-bucket/new_release")
     Expected Return
     {
         'Bucket': 'my-source-bucket',
         'CopySource': 'ccdi-validation/QL/file2.txt',
-        'Key': 'new_release/QL/file2.txt'
+        'Key': 'new_release/file2.txt'
     }
     """
     origin_bucket, object_key = parse_file_url(url=url_in_cds)
@@ -81,7 +81,8 @@ def copy_object_parameter(url_in_cds: str, dest_bucket_path: str) -> dict:
         pass
     dest_bucket, dest_prefix = dest_bucket_path.split("/", 1)
     copysource = os.path.join(origin_bucket, object_key)
-    dest_key = os.path.join(dest_prefix, object_key)
+    obj_name = object_key.split("/")[-1]
+    dest_key = os.path.join(dest_prefix, obj_name)
     param_dict = {"Bucket": dest_bucket, "CopySource": copysource, "Key": dest_key}
     return param_dict
 
