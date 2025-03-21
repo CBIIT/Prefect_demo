@@ -1,4 +1,5 @@
 from prefect import task, flow
+import prefect
 import subprocess
 
 @flow(name="print pip freeze", log_prints=True)
@@ -10,6 +11,7 @@ def print_pip_freeze():
         # Print the output
         print("Pip Freeze Output:")
         print(result)
+        print(f"Prefect version:{prefect.__version__}")
     except subprocess.CalledProcessError as e:
         print(f"Error while running pip freeze: {e}")
     except FileNotFoundError:
