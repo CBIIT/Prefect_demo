@@ -27,7 +27,7 @@ pull:
 # the deployments section allows you to provide configuration for deploying flows
 deployments:
   # base metadata
-  - name: happy-birthday
+  - name: happy-birthday-QL
     version: null
     tags: ["HAPPY BIRTHDAY"]
     description: null
@@ -41,24 +41,24 @@ deployments:
 
     # pull action to overwrite from file pull action
     pull:
-      - prefect.projects.steps.git_clone_project:
+      - prefect.deployments.steps.git_clone:
           id: clone-step
           repository: https://github.com/CBIIT/Prefect_demo.git
-          branch: main
-      - prefect.projects.steps.pip_install_requirements:
+          branch: update_dependencies
+      - prefect.deployments.steps.pip_install_requirements:
           requirements_file: requirements.txt
           directory: "{{ clone-step.directory }}"
           stream_output: False
 
     # infra-specific fields
     work_pool:
-      name: ccdi-curation-2gb
+      name: fnl-bento-8gb-prefect-2.20.3-python3.9
       work_queue_name: null
       job_variables: {}
 
-  - name: file-copy-s3
+  - name: file-copy-s3-TEST
     version: null
-    tags: ["Training"]
+    tags: ["Training", "TEST"]
     description: null
     entrypoint: workflow/copy_file_s3.py:copy_object_s3
     schedule: null
@@ -68,17 +68,40 @@ deployments:
 
     # pull action to overwrite from file pull action
     pull:
-      - prefect.projects.steps.git_clone_project:
+      - prefect.deployments.steps.git_clone:
           id: clone-step
           repository: https://github.com/CBIIT/Prefect_demo.git
-          branch: main
-      - prefect.projects.steps.pip_install_requirements:
+          branch: update_dependencies
+      - prefect.deployments.steps.pip_install_requirements:
           requirements_file: requirements.txt
           directory: "{{ clone-step.directory }}"
           stream_output: False
 
     # infra-specific fields
     work_pool:
-      name: fnl-worker
+      name: fnl-bento-8gb-prefect-2.20.3-python3.9
+      work_queue_name: null
+      job_variables: {}
+
+  - name: print-pip-freeze-TEST
+    version: null
+    tags: ["Training", "TEST"]
+    description: null
+    entrypoint: workflow/print_pip_freeze.py:print_pip_freeze
+    schedule: null
+
+    # flow-specific parameters
+    parameters:
+
+    # pull action to overwrite from file pull action
+    pull:
+      - prefect.deployments.steps.git_clone:
+          id: clone-step
+          repository: https://github.com/CBIIT/Prefect_demo.git
+          branch: update_dependencies
+
+    # infra-specific fields
+    work_pool:
+      name: fnl-bento-8gb-prefect-2.20.3-python3.9
       work_queue_name: null
       job_variables: {}

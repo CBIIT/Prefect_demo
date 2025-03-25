@@ -38,3 +38,6 @@ def runner(user_name: str, celebration_mode: DropDownChoices):
     """
 
     birthday_message(name=user_name, celebration=celebration_mode)
+
+if __name__=="__main__":
+    runner(user_name="Max", celebration_mode="yes")
